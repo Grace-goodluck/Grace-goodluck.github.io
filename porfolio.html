@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grace Nwakama Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --bg: #0d0d14;
+  --surface: #13131d;
+  --card: #181824;
+  --card2: #1e1e2c;
+  --border: #2c2c40;
+  --accent: #059669;
+  --accent-dim: rgba(5,150,105,0.15);
+  --gold: #c8862a;
+  --green: #27a869;
+  --green-dim: rgba(39,168,105,0.12);
+  --blue: #3a6fd8;
+  --text: #d8d6e8;
+  --muted: #787090;
+  --white: #f0eeff;
+  --fd: 'Syne', sans-serif;
+  --fb: 'Mulish', sans-serif;
+  --rad: 14px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fb);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 60px;
+  background-color: rgba(13,13,20,0.95);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-family: var(--fd); font-weight: 800; font-size: 18px; color: var(--white); text-decoration: none; }
+.logo em { color: var(--accent); font-style: normal; }
+.nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-btn { background: var(--accent) !important; color: white !important; padding: 8px 18px; border-radius: 6px; font-weight: 600 !important; }
+.nav-btn:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 130px 60px 80px;
+  position: relative;
+  background-color: var(--bg);
+}
+.hero-glow {
+  position: absolute; pointer-events: none; border-radius: 50%;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(5,150,105,0.07) 0%, transparent 70%);
+  top: -100px; right: -100px;
+}
+
+.avail-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background-color: var(--green-dim);
+  border: 1px solid rgba(39,168,105,0.3);
+  color: var(--green);
+  font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  padding: 7px 16px; border-radius: 100px;
+  margin-bottom: 32px; width: fit-content;
+}
+.avail-badge::before {
+  content: ''; width: 7px; height: 7px;
+  background: var(--green); border-radius: 50%;
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+h1 {
+  font-family: var(--fd);
+  font-size: clamp(46px, 7vw, 82px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -1.5px;
+  color: var(--white);
+  max-width: 800px;
+  margin-bottom: 24px;
+}
+h1 .line-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--accent);
+}
+h1 .line-accent { color: var(--accent); }
+
+.hero-sub {
+  font-size: 16px; color: var(--muted); font-weight: 300;
+  max-width: 480px; line-height: 1.8; margin-bottom: 40px;
+}
+
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 64px; }
+
+.btn-fill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: white;
+  text-decoration: none; padding: 13px 26px; border-radius: 8px;
+  font-weight: 600; font-size: 14px; font-family: var(--fb);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-fill:hover { opacity: 0.88; transform: translateY(-2px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--text);
+  text-decoration: none; padding: 13px 26px; border-radius: 8px;
+  font-weight: 500; font-size: 14px; font-family: var(--fb);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.hero-stats {
+  display: flex; gap: 48px; flex-wrap: wrap;
+  padding-top: 36px; border-top: 1px solid var(--border);
+}
+.stat-num { font-family: var(--fd); font-size: 34px; font-weight: 800; color: var(--white); }
+.stat-num span { color: var(--accent); }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+/* ── SECTION COMMONS ── */
+.sec-dark { background-color: var(--surface); padding: 90px 0; }
+.sec-main { background-color: var(--bg); padding: 90px 0; }
+.wrap { max-width: 1160px; margin: 0 auto; padding: 0 60px; }
+
+.eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+}
+h2 {
+  font-family: var(--fd);
+  font-size: clamp(30px, 4.5vw, 46px);
+  font-weight: 800; color: var(--white);
+  letter-spacing: -0.8px; line-height: 1.08;
+  margin-bottom: 12px;
+}
+.sec-sub {
+  font-size: 15px; color: var(--muted); max-width: 500px;
+  font-weight: 300; line-height: 1.8; margin-bottom: 52px;
+}
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: start; }
+.about-text p { font-size: 15px; color: var(--muted); line-height: 1.85; margin-bottom: 14px; font-weight: 300; }
+.about-text strong { color: var(--text); font-weight: 500; }
+.chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px; }
+.chip {
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text); padding: 6px 14px; border-radius: 100px;
+  font-size: 12px; font-weight: 500;
+}
+
+.skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.sk {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--rad); padding: 20px;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.sk:hover { border-color: rgba(5,150,105,0.4); transform: translateY(-2px); }
+.sk-ico { font-size: 22px; margin-bottom: 10px; }
+.sk-name { font-family: var(--fd); font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+.sk-list { font-size: 12px; color: var(--muted); line-height: 1.85; font-weight: 300; }
+
+/* ── FILTER BAR ── */
+.filter-bar { display: flex; gap: 10px; margin-bottom: 38px; flex-wrap: wrap; }
+.fb {
+  background: transparent; border: 1px solid var(--border);
+  color: var(--muted); padding: 8px 18px; border-radius: 100px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  font-family: var(--fb); transition: all 0.2s;
+}
+.fb:hover { border-color: var(--accent); color: var(--text); }
+.fb.on { background: var(--accent); border-color: var(--accent); color: white; }
+
+/* ── PROJECT GRID ── */
+.pg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+.pc {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--rad);
+  padding: 26px;
+  display: flex; flex-direction: column;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+}
+.pc:hover {
+  border-color: rgba(5,150,105,0.4);
+  background: var(--card2);
+  transform: translateY(-4px);
+}
+
+.pc.feat { grid-column: span 2; }
+.pc.feat .feat-inner { display: flex; gap: 22px; align-items: flex-start; }
+.pc.feat .feat-icon {
+  width: 130px; height: 110px; flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(5,150,105,0.14), rgba(200,134,42,0.08));
+  border: 1px solid rgba(5,150,105,0.2);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 44px;
+}
+
+.pc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+.pc-emoji { font-size: 28px; line-height: 1; }
+.pc-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ─ CARD BUTTONS ─ */
+.cb {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 7px 14px; border-radius: 6px;
+  font-size: 12px; font-weight: 600; font-family: var(--fb);
+  text-decoration: none; white-space: nowrap;
+  transition: all 0.2s; cursor: pointer; border: none;
+}
+.cb-code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.cb-code:hover { background: var(--accent); border-color: var(--accent); color: white; }
+.cb-live {
+  background: var(--green-dim);
+  border: 1px solid rgba(39,168,105,0.35);
+  color: var(--green);
+}
+.cb-live:hover { background: var(--green); border-color: var(--green); color: white; }
+
+.pc-name { font-family: var(--fd); font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 5px; letter-spacing: -0.2px; }
+.pc-stack { font-size: 12px; color: var(--accent); font-weight: 500; margin-bottom: 9px; }
+.pc-desc { font-size: 13px; color: var(--muted); line-height: 1.75; font-weight: 300; flex: 1; margin-bottom: 16px; }
+.pc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.pt { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase; }
+.pt-db { background: rgba(58,111,216,0.12); border: 1px solid rgba(58,111,216,0.25); color: #7fa4f0; }
+.pt-fe { background: rgba(5,150,105,0.12); border: 1px solid rgba(5,150,105,0.25); color: #34d399; }
+.pt-data { background: rgba(39,168,105,0.12); border: 1px solid rgba(39,168,105,0.25); color: #50c98a; }
+.pt-live { background: rgba(200,134,42,0.12); border: 1px solid rgba(200,134,42,0.25); color: #d4a050; }
+
+/* ── CERTIFICATIONS ── */
+.certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+.cert {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--rad); padding: 22px;
+  display: flex; flex-direction: column;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.cert:hover { border-color: rgba(5,150,105,0.35); transform: translateY(-2px); }
+.cert.inprog { border-color: rgba(39,168,105,0.25); background: rgba(39,168,105,0.04); }
+
+.cert-ico { font-size: 24px; margin-bottom: 12px; }
+.cert-platform { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+.cert-name { font-family: var(--fd); font-size: 13.5px; font-weight: 700; color: var(--white); line-height: 1.38; margin-bottom: 8px; flex: 1; }
+.cert-meta { font-size: 11px; color: var(--muted); font-weight: 300; line-height: 1.7; margin-bottom: 12px; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 700; padding: 3px 10px;
+  border-radius: 100px; text-transform: uppercase; letter-spacing: 0.5px;
+  align-self: flex-start;
+}
+.pill-gold { background: rgba(200,134,42,0.12); border: 1px solid rgba(200,134,42,0.3); color: var(--gold); }
+.pill-purple { background: rgba(120,80,200,0.12); border: 1px solid rgba(120,80,200,0.3); color: #a080e0; }
+.pill-green { background: var(--green-dim); border: 1px solid rgba(39,168,105,0.3); color: var(--green); }
+.pill-green::before { content: ''; width: 5px; height: 5px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+
+/* ── CONTACT ── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+
+.contact-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 18px; padding: 30px;
+}
+.clink {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 0; border-bottom: 1px solid var(--border);
+  text-decoration: none; transition: all 0.2s;
+}
+.clink:last-child { border-bottom: none; }
+.clink:hover .clink-label { color: var(--accent); }
+.clink-ico {
+  width: 40px; height: 40px;
+  background: var(--accent-dim); border: 1px solid rgba(5,150,105,0.2);
+  border-radius: 10px; display: flex; align-items: center;
+  justify-content: center; font-size: 16px; flex-shrink: 0;
+  transition: background 0.2s;
+}
+.clink:hover .clink-ico { background: var(--accent); }
+.clink-type { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+.clink-label { font-size: 13px; font-weight: 500; color: var(--text); transition: color 0.2s; }
+
+.otw {
+  background: linear-gradient(135deg, rgba(5,150,105,0.1), rgba(200,134,42,0.06));
+  border: 1px solid rgba(5,150,105,0.2);
+  border-radius: 18px; padding: 30px;
+}
+.otw-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--green-dim); border: 1px solid rgba(39,168,105,0.3);
+  color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+}
+.otw-badge::before { content: ''; width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+.otw-title { font-family: var(--fd); font-size: 24px; font-weight: 800; color: var(--white); margin-bottom: 10px; }
+.otw-body { font-size: 14px; color: var(--muted); line-height: 1.75; font-weight: 300; margin-bottom: 22px; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center; padding: 36px 60px;
+  border-top: 1px solid var(--border);
+  color: var(--muted); font-size: 12px; line-height: 2;
+}
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+footer strong { color: var(--accent); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 14px 20px; }
+  .nav-links li:not(:last-child) { display: none; }
+  #hero, .wrap { padding-left: 20px; padding-right: 20px; }
+  #hero { padding-top: 100px; }
+  .hero-stats { gap: 24px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .skill-grid { grid-template-columns: 1fr 1fr; }
+  .pg { grid-template-columns: 1fr; }
+  .pc.feat { grid-column: span 1; }
+  .pc.feat .feat-inner { flex-direction: column; }
+  .pc.feat .feat-icon { width: 100%; height: 80px; }
+  .certs-grid { grid-template-columns: 1fr 1fr; }
+  footer { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#hero">Grace<em>.</em></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://techbygrace.com" target="_blank">techbygrace.com</a></li>
+    <li><a href="https://github.com/Grace-goodluck" target="_blank" class="nav-btn">GitHub</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="avail-badge">Available for Remote, Hybrid and Full-Time Roles</div>
+
+  <h1>
+    Databases.<br>
+    <span class="line-outline">Interfaces.</span><br>
+    <span class="line-accent">Data.</span>
+  </h1>
+
+  <p class="hero-sub">
+    I am Grace Nwakama, a database specialist, full-stack developer, and data analyst from Lagos, Nigeria. I build things that are structured, functional, and actually make sense.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#projects" class="btn-fill">See My Work &rarr;</a>
+    <a href="https://techbygrace.com" target="_blank" class="btn-ghost">techbygrace.com &nearr;</a>
+    <a href="#contact" class="btn-ghost">Get In Touch</a>
+  </div>
+
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">15<span>+</span></div>
+      <div class="stat-label">GitHub Repositories</div>
+    </div>
+    <div>
+      <div class="stat-num">10<span>+</span></div>
+      <div class="stat-label">Completed Projects</div>
+    </div>
+    <div>
+      <div class="stat-num">6</div>
+      <div class="stat-label">Certifications</div>
+    </div>
+    <div>
+      <div class="stat-num">3<span>+</span></div>
+      <div class="stat-label">Live Deployments</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div id="about" class="sec-dark">
+<div class="wrap">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="eyebrow">About Me</div>
+      <h2>I build things<br>that work.</h2>
+      <p>I'm <strong>Grace Ihuoma Nwakama</strong>, based in Lagos, Nigeria. I started with Economics at <strong>Universite Polytechnique du Benin</strong>, but I have spent the past few years building a real foundation in tech: databases, web development, and data analysis.</p>
+      <p>What I enjoy most is the problem-solving side of it. Whether I am designing a database schema, writing a stored procedure that handles a real business workflow, or building a front-end that someone actually wants to use, I care about getting the details right.</p>
+      <p>Right now I am deepening my Python and web application skills through Aptech, and actively learning about <strong>AI and machine learning</strong> through both Anthropic and Aptech. I am looking for remote, hybrid and full-time, hybrid and full-time roles where I can contribute and grow.</p>
+      <div class="chips">
+        <span class="chip">Lagos, Nigeria</span>
+        <span class="chip">Remote Ready</span>
+        <span class="chip">BSc Economics</span>
+        <span class="chip">2x Aptech Distinction</span>
+        <span class="chip">Vercel Deployed</span>
+      </div>
+    </div>
+    <div class="skill-grid">
+      <div class="sk"><div class="sk-ico">🗄️</div><div class="sk-name">Database</div><div class="sk-list">SQL Server · T-SQL<br>Stored Procedures<br>Views and Triggers<br>Schema Design<br>Normalisation</div></div>
+      <div class="sk"><div class="sk-ico">🌐</div><div class="sk-name">Front-End</div><div class="sk-list">HTML5 · CSS3<br>JavaScript<br>DOM Manipulation<br>Responsive Design</div></div>
+      <div class="sk"><div class="sk-ico">📊</div><div class="sk-name">Data Analysis</div><div class="sk-list">R Language<br>Statistical Analysis<br>CSV Wrangling<br>Report Writing</div></div>
+      <div class="sk"><div class="sk-ico">🚀</div><div class="sk-name">Learning Now</div><div class="sk-list">Python · Django<br>React · MySQL<br>AI and ML Concepts<br>Git and GitHub</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="sec-main">
+<div class="wrap">
+  <div class="eyebrow">Portfolio</div>
+  <h2>Things I have built.</h2>
+  <p class="sec-sub">Every project here is something I built from scratch, for a real purpose. Click any card to see the code.</p>
+
+  <div class="filter-bar">
+    <button class="fb on" onclick="filter('all',this)">All Projects</button>
+    <button class="fb" onclick="filter('db',this)">Database</button>
+    <button class="fb" onclick="filter('fe',this)">Front-End</button>
+    <button class="fb" onclick="filter('data',this)">Data Analysis</button>
+  </div>
+
+  <div class="pg" id="pg">
+
+    <!-- FEATURED: Hospital DB -->
+    <div class="pc feat" data-c="db">
+      <div class="feat-inner">
+        <div class="feat-icon">🏥</div>
+        <div style="flex:1;">
+          <div class="pc-top">
+            <div>
+              <div class="pc-name">Hospital Management Database</div>
+              <div class="pc-stack">SQL Server · T-SQL · Healthcare Schema</div>
+            </div>
+            <div class="pc-btns">
+              <a class="cb cb-code" href="https://github.com/Grace-goodluck/HospitalManagementDB" target="_blank">View Code &nearr;</a>
+            </div>
+          </div>
+          <p class="pc-desc">A full hospital operations database built to simulate real healthcare data management. I designed three core tables (Patients, Doctors, and Appointments) with proper relational integrity, then wrote seven stored procedures covering every key workflow: adding patients, booking and cancelling appointments, retrieving patient history, checking doctor schedules, and pulling upcoming appointments. I also added sample data and a test script so anyone can clone it and see it working immediately, with no setup guesswork.</p>
+          <div class="pc-tags">
+            <span class="pt pt-db">SQL Server</span>
+            <span class="pt pt-db">Stored Procedures</span>
+            <span class="pt pt-db">Healthcare Schema</span>
+            <span class="pt pt-db">T-SQL</span>
+            <span class="pt pt-db">Relational Design</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BookStoreDB -->
+    <div class="pc" data-c="db">
+      <div class="pc-top">
+        <div class="pc-emoji">📚</div>
+        <div class="pc-btns"><a class="cb cb-code" href="https://github.com/Grace-goodluck/BookStoreDB" target="_blank">View Code &nearr;</a></div>
+      </div>
+      <div class="pc-name">BookStoreDB</div>
+      <div class="pc-stack">SQL Server · Views · Triggers · Normalisation</div>
+      <p class="pc-desc">A fully normalised bookstore database covering books, genres, authors, stock, and sales. Stored procedures handle all CRUD operations, views simplify reporting, and triggers enforce business rules automatically such as flagging low stock. It is a solid demonstration of how I think about database structure beyond just making things work.</p>
+      <div class="pc-tags">
+        <span class="pt pt-db">SQL Server</span>
+        <span class="pt pt-db">Normalisation</span>
+        <span class="pt pt-db">Views</span>
+        <span class="pt pt-db">Triggers</span>
+      </div>
+    </div>
+
+    <!-- Inventory + E-Commerce -->
+    <div class="pc" data-c="db">
+      <div class="pc-top">
+        <div class="pc-emoji">📦</div>
+        <div class="pc-btns">
+          <a class="cb cb-code" href="https://github.com/Grace-goodluck/InventoryControlSQLProject" target="_blank">Inventory &nearr;</a>
+          <a class="cb cb-code" href="https://github.com/Grace-goodluck/E-commerce-Database-SQL" target="_blank">E-Commerce &nearr;</a>
+        </div>
+      </div>
+      <div class="pc-name">Inventory and E-Commerce DB</div>
+      <div class="pc-stack">SQL Server · Business Logic · Triggers</div>
+      <p class="pc-desc">Two linked projects: an inventory system that tracks stock, suppliers, and product movement with automated low-stock alerts, and an e-commerce database with products, customers, and orders. Together they show how I think about data across a whole business, not just in isolated tables.</p>
+      <div class="pc-tags">
+        <span class="pt pt-db">SQL Server</span>
+        <span class="pt pt-db">E-Commerce</span>
+        <span class="pt pt-db">Inventory Logic</span>
+        <span class="pt pt-db">Triggers</span>
+      </div>
+    </div>
+
+    <!-- Student Records -->
+    <div class="pc" data-c="db">
+      <div class="pc-top">
+        <div class="pc-emoji">🎓</div>
+        <div class="pc-btns"><a class="cb cb-code" href="https://github.com/Grace-goodluck/StudentRecordsSQLProject" target="_blank">View Code &nearr;</a></div>
+      </div>
+      <div class="pc-name">Student Records System</div>
+      <div class="pc-stack">SQL Server · FK Constraints · Reporting</div>
+      <p class="pc-desc">A student management database for enrollment, courses, grades, and academic history, with foreign key constraints throughout to enforce referential integrity. I wrote queries to generate performance reports and student lookups that a school administrator would genuinely need.</p>
+      <div class="pc-tags">
+        <span class="pt pt-db">SQL Server</span>
+        <span class="pt pt-db">Schema Design</span>
+        <span class="pt pt-db">FK Constraints</span>
+      </div>
+    </div>
+
+    <!-- WVS Analysis FEATURED -->
+    <div class="pc feat" data-c="data">
+      <div class="feat-inner">
+        <div class="feat-icon">📊</div>
+        <div style="flex:1;">
+          <div class="pc-top">
+            <div>
+              <div class="pc-name">WVS Happiness Analysis</div>
+              <div class="pc-stack">R Language · World Values Survey · Live on Vercel</div>
+            </div>
+            <div class="pc-btns">
+              <a class="cb cb-code" href="https://github.com/Grace-goodluck/WVS_happiness-analysis" target="_blank">View Code &nearr;</a>
+              <a class="cb cb-live" href="https://wvs-happiness-analysis.vercel.app" target="_blank">Live Demo</a>
+            </div>
+          </div>
+          <p class="pc-desc">I used the World Values Survey, a large-scale global dataset, to explore how religion and age relate to reported happiness across different countries. I cleaned and wrangled the CSV data, ran statistical analysis in R, and wrote a full report documenting the findings. It is the kind of project that shows I can work with real, messy data, extract something meaningful from it, and communicate that clearly. The project is deployed live on Vercel.</p>
+          <div class="pc-tags">
+            <span class="pt pt-data">R Language</span>
+            <span class="pt pt-data">Statistical Analysis</span>
+            <span class="pt pt-data">Data Wrangling</span>
+            <span class="pt pt-data">WVS Dataset</span>
+            <span class="pt pt-live">Live on Vercel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTISANS -->
+    <div class="pc" data-c="fe">
+      <div class="pc-top">
+        <div class="pc-emoji">🔨</div>
+        <div class="pc-btns"><a class="cb cb-code" href="https://github.com/Grace-goodluck/ARTISANS-" target="_blank">View Code &nearr;</a></div>
+      </div>
+      <div class="pc-name">ARTISANS Platform</div>
+      <div class="pc-stack">HTML · CSS · JavaScript · Vercel</div>
+      <p class="pc-desc">A web platform connecting skilled artisans (carpenters, plumbers, electricians) with clients who need their services. I built and styled the entire front-end from scratch with a focus on a layout that feels trustworthy and professional. Deployed live on Vercel.</p>
+      <div class="pc-tags">
+        <span class="pt pt-fe">HTML5</span>
+        <span class="pt pt-fe">CSS3</span>
+        <span class="pt pt-fe">JavaScript</span>
+        <span class="pt pt-live">Live on Vercel</span>
+      </div>
+    </div>
+
+    <!-- Visa Card -->
+    <div class="pc" data-c="fe">
+      <div class="pc-top">
+        <div class="pc-emoji">💳</div>
+        <div class="pc-btns"><a class="cb cb-code" href="https://github.com/Grace-goodluck/visa-card-activation" target="_blank">View Code &nearr;</a></div>
+      </div>
+      <div class="pc-name">BOQ Visa Card Activation UI</div>
+      <div class="pc-stack">HTML · CSS · JavaScript · DOM</div>
+      <p class="pc-desc">A realistic Bank of Queensland Visa debit card interface (chip, logo, card number, validity) built as a UI challenge. The JavaScript handles PIN entry with auto-advance between inputs, validation logic, and an activation success message. A small project, but it shows I pay attention to detail and can replicate real-world UI patterns accurately.</p>
+      <div class="pc-tags">
+        <span class="pt pt-fe">HTML5</span>
+        <span class="pt pt-fe">CSS3</span>
+        <span class="pt pt-fe">JavaScript</span>
+        <span class="pt pt-fe">UI Design</span>
+      </div>
+    </div>
+
+    <!-- Photography -->
+    <div class="pc" data-c="fe">
+      <div class="pc-top">
+        <div class="pc-emoji">📷</div>
+        <div class="pc-btns"><a class="cb cb-code" href="https://github.com/Grace-goodluck/Photography_mobileupdated" target="_blank">View Code &nearr;</a></div>
+      </div>
+      <div class="pc-name">Photography Portfolio Website</div>
+      <div class="pc-stack">HTML · CSS · JavaScript · Gallery</div>
+      <p class="pc-desc">Built for a photographer, this black-themed gallery site showcases her work with hover effects and next/previous image navigation. I also optimised and compressed all the images to keep load times fast, because a slow photo portfolio defeats the purpose.</p>
+      <div class="pc-tags">
+        <span class="pt pt-fe">HTML5</span>
+        <span class="pt pt-fe">CSS3</span>
+        <span class="pt pt-fe">JavaScript</span>
+        <span class="pt pt-fe">Image Optimisation</span>
+      </div>
+    </div>
+
+    <!-- Portfolio sites -->
+    <div class="pc" data-c="fe">
+      <div class="pc-top">
+        <div class="pc-emoji">🌐</div>
+        <div class="pc-btns">
+          <a class="cb cb-live" href="https://techbygrace.com" target="_blank">Live Site</a>
+          <a class="cb cb-code" href="https://github.com/Grace-goodluck/Grace-goodluck.github.io" target="_blank">GitHub &nearr;</a>
+        </div>
+      </div>
+      <div class="pc-name">Personal Portfolio Websites (v1 to v3)</div>
+      <div class="pc-stack">HTML · CSS · Vercel · GitHub Pages</div>
+      <p class="pc-desc">Four iterations of my own portfolio site, each one intentionally better than the last. Going through multiple versions taught me what actually works in practice. The latest version is live on both GitHub Pages and Vercel, and also at techbygrace.com.</p>
+      <div class="pc-tags">
+        <span class="pt pt-fe">HTML5</span>
+        <span class="pt pt-fe">CSS3</span>
+        <span class="pt pt-live">techbygrace.com</span>
+        <span class="pt pt-live">GitHub Pages</span>
+      </div>
+    </div>
+
+  </div><!-- end pg -->
+
+  <div style="text-align:center;margin-top:48px;">
+    <a href="https://github.com/Grace-goodluck" target="_blank" class="btn-ghost">Browse All Repositories on GitHub &nearr;</a>
+  </div>
+</div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div id="certifications" class="sec-dark">
+<div class="wrap">
+  <div class="eyebrow">Credentials</div>
+  <h2>Certifications.</h2>
+  <p class="sec-sub">Every certificate here represents real hours of learning and examination, not just passive watching.</p>
+
+  <div class="certs-grid">
+
+    <div class="cert">
+      <div class="cert-ico">🏫</div>
+      <div class="cert-platform">Aptech Computer Education</div>
+      <div class="cert-name">Smart Professional: Python Web Application Development</div>
+      <div class="cert-meta">March 2026 · ACE Lagos, Victoria Island<br>Subjects: Python, Django, React, MySQL, UI/UX, Web App Development<br>Score: 75 out of 100</div>
+      <span class="pill pill-gold">Distinction</span>
+          <a href="https://drive.google.com/file/d/1j-6Uyh8hScHeMguj0UTYbAtR9dIFBCGE/view?usp=drivesdk" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-ico">🏫</div>
+      <div class="cert-platform">Aptech Computer Education</div>
+      <div class="cert-name">Data Management with SQL Server</div>
+      <div class="cert-meta">June 2025 · ACE Lagos, Victoria Island<br>Full SQL Server database design and management course</div>
+      <span class="pill pill-gold">Distinction</span>
+          <a href="https://drive.google.com/file/d/1mUeTyFSEmJYVe_BIez62v5AB01f_P6A8/view?usp=drivesdk" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-ico">🎓</div>
+      <div class="cert-platform">Udemy</div>
+      <div class="cert-name">Complete Python Course 2026: Beginner to Advanced</div>
+      <div class="cert-meta">April 2026 · Srinivas Rao<br>24.5 total hours</div>
+      <span class="pill pill-purple">Udemy Certificate</span>
+          <a href="https://ude.my/UC-0f51baed-0dbd-43f7-9681-79aa3f6e2f0e" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-ico">🎓</div>
+      <div class="cert-platform">Udemy</div>
+      <div class="cert-name">Python and Java: Master Backend and Frontend Web Development</div>
+      <div class="cert-meta">April 2026 · Sara Academy<br>4 total hours</div>
+      <span class="pill pill-purple">Udemy Certificate</span>
+          <a href="https://ude.my/UC-0f51baed-0dbd-43f7-9681-79aa3f6e2f0e" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+          <a href="https://ude.my/UC-002814f6-e1d9-4651-81d4-9d2e7ca4eb3f" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-ico">🎓</div>
+      <div class="cert-platform">Udemy</div>
+      <div class="cert-name">Data Entry Course for Beginners</div>
+      <div class="cert-meta">May 2025 · Azharul Rafy<br>4.5 total hours</div>
+      <span class="pill pill-purple">Udemy Certificate</span>
+          <a href="https://ude.my/UC-ad963cf5-80ae-4e94-9adb-21c85103e974" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+          <a href="https://ude.my/UC-0f51baed-0dbd-43f7-9681-79aa3f6e2f0e" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+          <a href="https://ude.my/UC-002814f6-e1d9-4651-81d4-9d2e7ca4eb3f" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+    </div>
+
+    <div class="cert">
+      <div class="cert-ico">🎓</div>
+      <div class="cert-platform">Udemy</div>
+      <div class="cert-name">Must-Have Skills (Training) for Virtual Assistants</div>
+      <div class="cert-meta">May 2025 · Erin Booth<br>4.5 total hours</div>
+      <span class="pill pill-purple">Udemy Certificate</span>
+          <a href="https://ude.my/UC-7b0cb166-8e14-42ce-ad32-47e17d42e681" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+          <a href="https://ude.my/UC-ad963cf5-80ae-4e94-9adb-21c85103e974" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+          <a href="https://ude.my/UC-0f51baed-0dbd-43f7-9681-79aa3f6e2f0e" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+          <a href="https://ude.my/UC-002814f6-e1d9-4651-81d4-9d2e7ca4eb3f" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-size:11px;font-weight:700;color:#059669;text-decoration:none;background:rgba(5,150,105,0.1);border:1px solid rgba(5,150,105,0.3);padding:4px 12px;border-radius:100px;">View Certificate &nearr;</a>
+    </div>
+
+    <div class="cert inprog">
+      <div class="cert-ico">🤖</div>
+      <div class="cert-platform">Anthropic + Aptech</div>
+      <div class="cert-name">AI and Machine Learning Fundamentals</div>
+      <div class="cert-meta">2026, currently completing through Anthropic learning resources and Aptech AI curriculum</div>
+      <span class="pill pill-green">In Progress</span>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="sec-main">
+<div class="wrap">
+  <div class="contact-grid">
+    <div>
+      <div class="eyebrow">Contact</div>
+      <h2>Let us work<br>together.</h2>
+      <p style="font-size:15px;color:var(--muted);font-weight:300;line-height:1.85;max-width:360px;">I am actively looking for remote, hybrid and full-time roles across Data Engineering, Database Specialization, Front-End Development, and Back-End Development. If you have something that might be a fit, I would genuinely love to hear from you.</p>
+    </div>
+    <div>
+      <div class="contact-card" style="margin-bottom:16px;">
+        <a class="clink" href="https://techbygrace.com" target="_blank">
+          <div class="clink-ico">🌐</div>
+          <div><div class="clink-type">Website</div><div class="clink-label">techbygrace.com</div></div>
+        </a>
+        <a class="clink" href="mailto:Goodluckgrace08@gmail.com">
+          <div class="clink-ico">✉️</div>
+          <div><div class="clink-type">Email</div><div class="clink-label">Goodluckgrace08@gmail.com</div></div>
+        </a>
+        <a class="clink" href="https://github.com/Grace-goodluck" target="_blank">
+          <div class="clink-ico">🐙</div>
+          <div><div class="clink-type">GitHub</div><div class="clink-label">github.com/Grace-goodluck</div></div>
+        </a>
+        <a class="clink" href="https://www.linkedin.com/in/grace-nwakama-it/" target="_blank">
+          <div class="clink-ico">💼</div>
+          <div><div class="clink-type">LinkedIn</div><div class="clink-label">grace-nwakama-it</div></div>
+        </a>
+        <div class="clink" style="cursor:default;">
+          <div class="clink-ico">📍</div>
+          <div><div class="clink-type">Location</div><div class="clink-label">Lagos, Nigeria. Remote Worldwide</div></div>
+        </div>
+      </div>
+      <div class="otw">
+        <div class="otw-badge">Open to Work</div>
+        <div class="otw-title">Available Now</div>
+        <p class="otw-body">Looking for remote roles in <strong style="color:var(--text);">Data Engineering</strong>, <strong style="color:var(--text);">Database Specialization</strong>, <strong style="color:var(--text);">Front-End Development</strong>, and <strong style="color:var(--text);">Back-End Development</strong>. Remote, hybrid, full-time, part-time or contract.</p>
+        <button onclick="sendMessage()" class="btn-fill" style="font-size:13px;padding:11px 22px;border:none;cursor:pointer;">Send Me a Message &nearr;</button>
+        <div id="mail-tip" style="display:none;margin-top:12px;background:rgba(39,168,105,0.1);border:1px solid rgba(39,168,105,0.3);border-radius:8px;padding:12px 16px;font-size:13px;color:#50c98a;line-height:1.6;">
+          Your email app should have opened. If it did not, you can email me directly at:<br>
+          <a href="mailto:Goodluckgrace08@gmail.com" style="color:#50c98a;font-weight:700;word-break:break-all;">Goodluckgrace08@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<footer>
+  Built by <strong>Grace Ihuoma Nwakama</strong> · Lagos, Nigeria · 2026<br>
+  <a href="https://techbygrace.com" target="_blank">techbygrace.com</a> &nbsp;&middot;&nbsp;
+  <a href="https://github.com/Grace-goodluck" target="_blank">GitHub</a> &nbsp;&middot;&nbsp;
+  <a href="https://www.linkedin.com/in/grace-nwakama-it/" target="_blank">LinkedIn</a>
+</footer>
+
+<script>
+function sendMessage() {
+  var email = 'Goodluckgrace08@gmail.com';
+  var subject = encodeURIComponent('Hello Grace, I found your portfolio');
+  var body = encodeURIComponent('Hi Grace,\n\nI came across your portfolio and would love to connect.\n\nBest regards,');
+  window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+  setTimeout(function() {
+    document.getElementById('mail-tip').style.display = 'block';
+  }, 800);
+}
+
+function filter(cat, btn) {
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.pc').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.c === cat) ? '' : 'none';
+  });
+}
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.06 });
+
+document.querySelectorAll('.pc, .sk, .cert, .contact-card, .otw').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(16px)';
+  el.style.transition = `opacity 0.5s ${i * 55}ms ease, transform 0.5s ${i * 55}ms ease, border-color 0.25s, background 0.25s, transform 0.25s`;
+  io.observe(el);
+});
+</script>
+
+</body>
+</html>
