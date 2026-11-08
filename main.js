@@ -35,7 +35,29 @@
         if (e.isIntersecting) { e.target.classList.add('in'); revealer.unobserve(e.target); }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { revealer.observe(el); });
+    document.querySelectorAll('.reveal, .sec-title').forEach(function (el) { revealer.observe(el); });
+  }
+
+  // Typing headline: types, pauses, deletes, moves to the next line. Reduced motion: first line, static.
+  var typed = document.querySelector('.typed');
+  if (typed) {
+    var lines = typed.dataset.lines.split('|');
+    root.classList.add('typing');
+    if (reduceMotion) {
+      root.classList.add('typed-static');
+      typed.textContent = lines[0];
+    } else {
+      var li = 0, ci = 0, deleting = false;
+      (function tick() {
+        var line = lines[li];
+        ci += deleting ? -1 : 1;
+        typed.textContent = line.slice(0, ci);
+        var wait = deleting ? 35 : 70;
+        if (!deleting && ci === line.length) { deleting = true; wait = 1800; }
+        else if (deleting && ci === 0) { deleting = false; li = (li + 1) % lines.length; wait = 450; }
+        setTimeout(tick, wait);
+      })();
+    }
   }
 
   // Highlight the nav link for the section in view
