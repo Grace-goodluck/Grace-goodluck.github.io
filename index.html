@@ -104,44 +104,67 @@
     <!-- LIVE AGENTS -->
     <section id="agents" class="section" aria-labelledby="agents-h">
       <h2 id="agents-h" class="sec-title">Live Agents</h2>
-      <p class="lead reveal">AI agents I have built and measured. Each one has its scope and evaluation written down in the repository.</p>
+      <p class="lead reveal">AI agents I have built and measured. The three live agents have public repositories with their scope and evaluation written down; the Job Application Agent runs locally and its code is private.</p>
 
+      <!--
+        DEMO VIDEO: to fill a placeholder, replace its <div class="demo-slot">…</div> with e.g.
+        <video class="demo-video" controls preload="none" poster="image/AGENT-poster.jpg">
+          <source src="video/AGENT-demo.mp4" type="video/mp4">
+        </video>
+      -->
       <div class="stack">
         <article class="card reveal">
           <div class="card-head">
             <h3 class="card-title">Website Audit Agent</h3>
             <span class="badge-live">Live</span>
           </div>
-          <p class="card-stack">Python · FastAPI · Gemini API · Docker · Render</p>
-          <p>Audits one web page and writes a plain-English report: what was checked, what passed, what failed, and prioritised fixes. The checks are deterministic Python (HTTPS, speed, page size, title and meta description, headings, alt text, Open Graph, favicon, broken links). One Gemini call writes the summary from the check results only, never from the raw page.</p>
+          <p>Checks a web page the way a search engine and a visitor would (HTTPS, speed, title and description, headings, alt text, Open Graph, favicon, broken links) and reports prioritised fixes. The checks are plain Python; one Gemini call only writes the summary, from the check results, never from the raw page.</p>
+          <ul class="tags" aria-label="Tech"><li>Python</li><li>FastAPI</li><li>Gemini API</li><li>Docker</li><li>Render</li></ul>
+          <div class="demo-slot">Demo video coming soon</div>
           <p class="links">
-            <a href="https://website-audit-agent-hu0d.onrender.com" target="_blank" rel="noopener">Try it live &nearr;</a>
+            <a class="btn-sm" href="https://website-audit-agent-hu0d.onrender.com" target="_blank" rel="noopener">Try it live &nearr;</a>
             <a href="https://github.com/Grace-goodluck/website-audit-agent" target="_blank" rel="noopener">Code &nearr;</a>
           </p>
         </article>
 
         <article class="card reveal">
           <div class="card-head">
-            <h3 class="card-title">Second Brain</h3>
-            <span class="status">Open source</span>
+            <h3 class="card-title">Data Analysis Agent</h3>
+            <span class="badge-live">Live</span>
           </div>
-          <p class="card-stack">Python · FastAPI · Gemini API · DuckDB · RAG</p>
-          <p>A retrieval-augmented question-answering agent over the DuckDB documentation. It answers only from its sources, cites every claim, and says "not found" when the answer is not there. It refused every unanswerable question in evaluation, and its agent loop raised correct answers from 10 to 11 out of 12. Built test-first with 269 automated tests.</p>
+          <p>Upload a CSV and get a report with data-quality checks, charts and a plain-English summary. A number check rejects any figure not in the data, and files are analysed in memory and never stored.</p>
+          <ul class="tags" aria-label="Tech"><li>Python</li><li>pandas</li><li>matplotlib</li><li>Gemini API</li><li>Render</li></ul>
+          <div class="demo-slot">Demo video coming soon</div>
           <p class="links">
-            <a href="https://github.com/Grace-goodluck/second_brain" target="_blank" rel="noopener">Code and results &nearr;</a>
+            <a class="btn-sm" href="https://data-analysis-agent-ynlc.onrender.com" target="_blank" rel="noopener">Try it live &nearr;</a>
+            <a href="https://github.com/Grace-goodluck/data-analysis-agent" target="_blank" rel="noopener">Code &nearr;</a>
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-head">
+            <h3 class="card-title">Client Inquiry Agent</h3>
+            <span class="badge-live">Live</span>
+          </div>
+          <p>Drafts replies to client messages in my voice from my brand files, and shows its sources. It never quotes prices and blocks invented numbers, scoring 10/10 on its evaluation set after fixes (6/10 on the first run).</p>
+          <ul class="tags" aria-label="Tech"><li>Python</li><li>FastAPI</li><li>Gemini API</li><li>Render</li></ul>
+          <div class="demo-slot">Demo video coming soon</div>
+          <p class="links">
+            <a class="btn-sm" href="https://client-inquiry-agent.onrender.com" target="_blank" rel="noopener">Try it live &nearr;</a>
+            <a href="https://github.com/Grace-goodluck/client-inquiry-agent" target="_blank" rel="noopener">Code &nearr;</a>
           </p>
         </article>
 
         <article class="card reveal">
           <div class="card-head">
             <h3 class="card-title">Job Application Agent</h3>
-            <span class="status">Local tool</span>
+            <span class="status">Runs locally</span>
           </div>
-          <p class="card-stack">Python · Gemini API · Second Brain API</p>
-          <p>Given a job description, it writes an honest application report: each key requirement matched to evidence from my Second Brain (with sources), a list of gaps, and a cover letter drawn only from that evidence. It uses Second Brain as a tool and never claims anything it cannot back up.</p>
-          <p class="links">
-            <a href="mailto:goodluckgrace08@gmail.com?subject=Job%20Application%20Agent%20code">Code on request &rarr;</a>
-          </p>
+          <p>Checks a job description against my real experience, matching each requirement to evidence from my <a href="#second-brain">Second Brain</a> (with sources) and flagging gaps honestly. Its cover letter uses only that evidence, so it never claims anything it cannot back up.</p>
+          <ul class="tags" aria-label="Tech"><li>Python</li><li>Gemini API</li><li>Second Brain API</li></ul>
+          <div class="demo-slot">Demo video coming soon</div>
+          <!-- No code link: the repository is not on GitHub yet. Add one here if it is published. -->
+          <p class="links muted">No live demo: it reads my private knowledge base.</p>
         </article>
       </div>
     </section>
@@ -162,7 +185,7 @@
       <div class="grid" id="project-grid">
 
         <!-- Second Brain (featured, AI) -->
-        <article class="card feat reveal" data-c="ai">
+        <article class="card feat reveal" data-c="ai" id="second-brain">
           <h3 class="card-title">Second Brain (AI agent)</h3>
           <p class="card-stack">Python · FastAPI · Gemini API · DuckDB</p>
           <p>A retrieval-augmented question-answering agent over the DuckDB documentation. It answers only from its sources, cites every claim, and says "not found" when the answer is not in the documents. It refused every unanswerable question in evaluation. An agent loop rewrites failed searches and improved correct answers from 10 to 11 out of 12 against the baseline pipeline. Built test-first with 269 automated tests.</p>
@@ -329,89 +352,151 @@
     <section id="certifications" class="section" aria-labelledby="certs-h">
       <h2 id="certs-h" class="sec-title">Certifications</h2>
 
-      <h3 class="sub reveal">AI and agents</h3>
+      <p class="lead reveal">Click a certificate to see it full size.</p>
+
+      <h3 class="sub reveal">Anthropic</h3>
       <div class="certs">
-        <div class="cert reveal"><p class="cert-issuer">Anthropic</p><p class="cert-name">Building with the Claude API</p></div>
-        <div class="cert reveal"><p class="cert-issuer">Anthropic</p><p class="cert-name">Introduction to Model Context Protocol (MCP)</p></div>
-        <div class="cert reveal"><p class="cert-issuer">Anthropic</p><p class="cert-name">Claude Code 101</p></div>
-        <div class="cert reveal"><p class="cert-issuer">Anthropic</p><p class="cert-name">Claude 101</p></div>
-        <div class="cert reveal"><p class="cert-issuer">Anthropic</p><p class="cert-name">AI Fluency: Framework &amp; Foundations</p></div>
-        <div class="cert reveal"><p class="cert-issuer">Anthropic</p><p class="cert-name">Introduction to Claude Cowork</p></div>
-        <div class="cert reveal">
+        <article class="cert reveal">
+          <a class="cert-thumb" href="image/anthropic-claude-101.jpg" target="_blank" rel="noopener">
+            <img src="image/anthropic-claude-101.jpg" alt="Anthropic Claude 101 certificate of completion awarded to Grace Nwakama" loading="lazy">
+          </a>
+          <p class="cert-issuer">Anthropic</p>
+          <h4 class="cert-name">Claude 101</h4>
+          <span class="pill">Completed</span>
+          <p class="cert-links">
+            <a class="cert-link" href="https://verify.skilljar.com/c/73xig9jx5xsf" target="_blank" rel="noopener">Verify &nearr;</a>
+          </p>
+        </article>
+
+        <article class="cert reveal">
+          <a class="cert-thumb" href="image/anthropic-claude-code-101.jpg" target="_blank" rel="noopener">
+            <img src="image/anthropic-claude-code-101.jpg" alt="Anthropic Claude Code 101 certificate of completion awarded to Grace Nwakama" loading="lazy">
+          </a>
+          <p class="cert-issuer">Anthropic</p>
+          <h4 class="cert-name">Claude Code 101</h4>
+          <span class="pill">Completed</span>
+          <p class="cert-links">
+            <a class="cert-link" href="https://verify.skilljar.com/c/q22edfxwa24m" target="_blank" rel="noopener">Verify &nearr;</a>
+          </p>
+        </article>
+
+        <article class="cert reveal">
+          <a class="cert-thumb" href="image/anthropic-ai-fluency.jpg" target="_blank" rel="noopener">
+            <img src="image/anthropic-ai-fluency.jpg" alt="Anthropic AI Fluency: Framework and Foundations certificate of completion awarded to Grace Nwakama" loading="lazy">
+          </a>
+          <p class="cert-issuer">Anthropic</p>
+          <h4 class="cert-name">AI Fluency: Framework &amp; Foundations</h4>
+          <span class="pill">Completed</span>
+          <p class="cert-links">
+            <a class="cert-link" href="https://verify.skilljar.com/c/xphwubuggzkf" target="_blank" rel="noopener">Verify &nearr;</a>
+          </p>
+        </article>
+      </div>
+
+      <h3 class="sub reveal">Aptech Computer Education</h3>
+      <div class="certs">
+        <article class="cert reveal">
+          <a class="cert-thumb" href="image/aptech-ai-ml-cert.jpg" target="_blank" rel="noopener">
+            <img src="image/aptech-ai-ml-cert.jpg" alt="Aptech Smart Professional – Artificial Intelligence and Machine Learning certificate awarded to Grace Nwakama, grade Credit" loading="lazy">
+          </a>
           <p class="cert-issuer">Aptech Computer Education</p>
-          <p class="cert-name">Smart Professional – Artificial Intelligence and Machine Learning</p>
-          <p class="cert-meta">September 2026 · ACE Lagos, Victoria Island · Score 71/100</p>
+          <h4 class="cert-name">Smart Professional – Artificial Intelligence and Machine Learning</h4>
+          <p class="cert-meta">2026 · ACE Lagos, Victoria Island · Score 71/100</p>
           <span class="pill">Credit</span>
           <p class="cert-links">
-            <a class="cert-link" href="image/aptech-ai-ml-cert.jpg" target="_blank" rel="noopener">View certificate &nearr;</a>
             <a class="cert-link" href="image/aptech-ai-ml-result.jpg" target="_blank" rel="noopener">View result &nearr;</a>
           </p>
-        </div>
+        </article>
+
+        <article class="cert reveal">
+          <a class="cert-thumb" href="image/aptech-python-certificate.jpg" target="_blank" rel="noopener">
+            <img src="image/aptech-python-certificate.jpg" alt="Aptech Smart Professional – Python Web Application Development certificate awarded to Grace Nwakama, grade Distinction" loading="lazy">
+          </a>
+          <p class="cert-issuer">Aptech Computer Education</p>
+          <h4 class="cert-name">Smart Professional – Python Web Application Development</h4>
+          <p class="cert-meta">2026 · ACE Lagos, Victoria Island · Score 75/100</p>
+          <span class="pill">Distinction</span>
+          <p class="cert-links">
+            <a class="cert-link" href="image/aptech-python-performance-statement.jpg" target="_blank" rel="noopener">Performance statement &nearr;</a>
+          </p>
+        </article>
+
+        <article class="cert reveal">
+          <a class="cert-thumb" href="image/aptech-sql-server-certificate.jpg" target="_blank" rel="noopener">
+            <img src="image/aptech-sql-server-certificate.jpg" alt="Aptech Data Management with SQL Server certificate of accomplishment awarded to Grace Nwakama, grade Distinction" loading="lazy">
+          </a>
+          <p class="cert-issuer">Aptech Computer Education</p>
+          <h4 class="cert-name">Data Management with SQL Server</h4>
+          <p class="cert-meta">2025 · ACE Lagos, Victoria Island</p>
+          <span class="pill">Distinction</span>
+        </article>
       </div>
 
-      <h3 class="sub reveal">Web and software development</h3>
+      <h3 class="sub reveal">Udemy</h3>
+      <h4 class="sub-group reveal">Tech</h4>
       <div class="certs">
-        <div class="cert reveal">
-          <p class="cert-issuer">Aptech Computer Education</p>
-          <p class="cert-name">Smart Professional: Python Web Application Development</p>
-          <p class="cert-meta">March 2026 · ACE Lagos, Victoria Island · Python, Django, React, MySQL, UI/UX · Score 75/100</p>
-          <span class="pill">Distinction</span>
-          <a class="cert-link" href="https://drive.google.com/file/d/1j-6Uyh8hScHeMguj0UTYbAtR9dIFBCGE/view?usp=drivesdk" target="_blank" rel="noopener">View certificate &nearr;</a>
-        </div>
-        <div class="cert reveal">
+        <article class="cert reveal">
           <p class="cert-issuer">Udemy</p>
-          <p class="cert-name">Python and Java: Master Backend and Frontend Web Development</p>
-          <p class="cert-meta">April 2026 · Sara Academy · 4 hours</p>
-          <a class="cert-link" href="https://ude.my/UC-002814f6-e1d9-4651-81d4-9d2e7ca4eb3f" target="_blank" rel="noopener">View certificate &nearr;</a>
-        </div>
-        <div class="cert reveal">
-          <p class="cert-issuer">Udemy</p>
-          <p class="cert-name">Complete Python Course 2026: Beginner to Advanced</p>
+          <h5 class="cert-name">Complete Python Course 2026: Beginner to Advanced</h5>
           <p class="cert-meta">April 2026 · Srinivas Rao · 24.5 hours</p>
-          <a class="cert-link" href="https://ude.my/UC-0f51baed-0dbd-43f7-9681-79aa3f6e2f0e" target="_blank" rel="noopener">View certificate &nearr;</a>
-        </div>
-      </div>
+          <span class="pill">Completed</span>
+          <p class="cert-links">
+            <a class="cert-link" href="https://www.udemy.com/certificate/UC-0f51baed-0dbd-43f7-9681-79aa316e2f0e/" target="_blank" rel="noopener">View certificate &nearr;</a>
+          </p>
+        </article>
 
-      <h3 class="sub reveal">Data</h3>
-      <div class="certs">
-        <div class="cert reveal">
-          <p class="cert-issuer">Aptech Computer Education</p>
-          <p class="cert-name">Data Management with SQL Server</p>
-          <p class="cert-meta">June 2025 · ACE Lagos, Victoria Island</p>
-          <span class="pill">Distinction</span>
-          <a class="cert-link" href="https://drive.google.com/file/d/1mUeTyFSEmJYVe_BIez62v5AB01f_P6A8/view?usp=drivesdk" target="_blank" rel="noopener">View certificate &nearr;</a>
-        </div>
-      </div>
-
-      <h3 class="sub reveal">Business support</h3>
-      <div class="certs">
-        <div class="cert reveal">
+        <article class="cert reveal">
           <p class="cert-issuer">Udemy</p>
-          <p class="cert-name">Data Entry Course for Beginners</p>
+          <h5 class="cert-name">Python and Java: Master Backend and Frontend Web Development</h5>
+          <p class="cert-meta">April 2026 · Sara Academy · 4 hours</p>
+          <span class="pill">Completed</span>
+          <p class="cert-links">
+            <a class="cert-link" href="https://ude.my/UC-002814f6-e1d9-4651-81d4-9d2e7ca4eb3f" target="_blank" rel="noopener">View certificate &nearr;</a>
+          </p>
+        </article>
+      </div>
+
+      <h4 class="sub-group reveal">Additional skills</h4>
+      <div class="certs">
+        <article class="cert reveal">
+          <p class="cert-issuer">Udemy</p>
+          <h5 class="cert-name">Data Entry Course for Beginners</h5>
           <p class="cert-meta">May 2025 · Azharul Rafy · 4.5 hours</p>
-          <a class="cert-link" href="https://ude.my/UC-ad963cf5-80ae-4e94-9adb-21c85103e974" target="_blank" rel="noopener">View certificate &nearr;</a>
-        </div>
-        <div class="cert reveal">
+          <span class="pill">Completed</span>
+          <p class="cert-links">
+            <a class="cert-link" href="https://ude.my/UC-ad963cf5-80ae-4e94-9adb-21c85103e974" target="_blank" rel="noopener">View certificate &nearr;</a>
+          </p>
+        </article>
+
+        <article class="cert reveal">
           <p class="cert-issuer">Udemy</p>
-          <p class="cert-name">Must-Have Skills for Virtual Assistants</p>
+          <h5 class="cert-name">Must-Have Skills for Virtual Assistants</h5>
           <p class="cert-meta">May 2025 · Erin Booth · 4.5 hours</p>
-          <a class="cert-link" href="https://ude.my/UC-7b0cb166-8e14-42ce-ad32-47e17d42e681" target="_blank" rel="noopener">View certificate &nearr;</a>
-        </div>
+          <span class="pill">Completed</span>
+          <p class="cert-links">
+            <a class="cert-link" href="https://ude.my/UC-7b0cb166-8e14-42ce-ad32-47e17d42e681" target="_blank" rel="noopener">View certificate &nearr;</a>
+          </p>
+        </article>
       </div>
 
       <h3 class="sub reveal">Coming soon</h3>
       <div class="certs">
         <!--
           TO ADD A CERTIFICATE: copy this block into the right group above, fill it in,
-          and delete any line you don't need (meta, pill, link).
+          and delete any line you don't need (meta, links). Put the image in image/.
 
-        <div class="cert reveal">
+        <article class="cert reveal">
+          <a class="cert-thumb" href="image/FILE.jpg" target="_blank" rel="noopener">
+            <img src="image/FILE.jpg" alt="ISSUER CERTIFICATE TITLE certificate awarded to Grace Nwakama" loading="lazy">
+          </a>
           <p class="cert-issuer">ISSUER</p>
-          <p class="cert-name">CERTIFICATE TITLE</p>
-          <p class="cert-meta">Month Year · Instructor or place · Hours</p>
-          <span class="pill">Distinction</span>
-          <a class="cert-link" href="CERTIFICATE_URL" target="_blank" rel="noopener">View certificate &nearr;</a>
-        </div>
+          <h4 class="cert-name">CERTIFICATE TITLE</h4>
+          <p class="cert-meta">Year · Place</p>
+          <span class="pill">Completed</span>
+          <p class="cert-links">
+            <a class="cert-link" href="VERIFY_URL" target="_blank" rel="noopener">Verify &nearr;</a>
+          </p>
+        </article>
         -->
         <div class="cert cert-empty reveal">
           <p class="cert-name">More certificates coming</p>

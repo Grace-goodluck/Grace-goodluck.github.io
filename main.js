@@ -27,6 +27,14 @@
     });
   });
 
+  // In-page links to a project card hidden by the filter: show all projects first
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var target = document.getElementById(a.hash.slice(1));
+      if (target && target.hidden) document.querySelector('.filters [data-filter="all"]').click();
+    });
+  });
+
   // Fade-up on scroll
   if (!reduceMotion && 'IntersectionObserver' in window) {
     root.classList.add('reveal-ready');
@@ -87,7 +95,7 @@
   var box = document.getElementById('lightbox');
   if (box && typeof box.showModal === 'function') {
     var boxImg = box.querySelector('img');
-    document.querySelectorAll('.shots a').forEach(function (a) {
+    document.querySelectorAll('.shots a, .cert-thumb').forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
         boxImg.src = a.href;
