@@ -190,12 +190,25 @@ main p + p { margin-top: 14px; }
 }
 .card p.links a.btn-sm:hover { text-decoration: none; transform: translateY(-1px); box-shadow: 0 8px 18px -10px rgba(212, 175, 55, 0.6); }
 .card p.links { align-items: center; }
-.demo-slot {
-  display: flex; align-items: center; justify-content: center; min-height: 72px;
-  border: 1px dashed var(--line-strong); border-radius: 8px; background: rgba(6, 40, 31, 0.5);
-  font-size: 13px; color: var(--muted);
+/* Click-to-play YouTube demo: thumbnail first, iframe only after a click (main.js) */
+.yt {
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
+  border-radius: 8px; border: 1px solid var(--line); background: #000;
 }
-.demo-video { width: 100%; border-radius: 8px; border: 1px solid var(--line); background: #000; }
+.yt img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s var(--ease), opacity .3s; opacity: .85; }
+.yt iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt-play {
+  position: absolute; top: 50%; left: 50%; width: 68px; height: 48px; transform: translate(-50%, -50%);
+  border-radius: 12px; background: var(--gold); box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.7);
+  transition: transform .25s var(--ease), box-shadow .25s;
+}
+.yt-play::before {
+  content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%);
+  border-style: solid; border-width: 10px 0 10px 17px; border-color: transparent transparent transparent var(--bg);
+}
+a.yt:hover img { transform: scale(1.03); opacity: 1; }
+a.yt:hover .yt-play, a.yt:focus-visible .yt-play { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 0 6px var(--gold-soft), 0 8px 24px -8px rgba(0, 0, 0, 0.7); }
+a.yt:hover { text-decoration: none; }
 .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px; }
 .shots a { display: block; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); }
 .shots img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; transition: transform .3s var(--ease); }
@@ -332,7 +345,7 @@ main .footer p + p { margin-top: 4px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
-  .card:hover, .cert:hover, .btn:hover, .social a:hover, .shots a:hover img, .cert-thumb:hover img,
+  .card:hover, .cert:hover, .btn:hover, .social a:hover, .shots a:hover img, .cert-thumb:hover img, a.yt:hover img,
   .reveal-ready .card.reveal.in:hover, .reveal-ready .cert.reveal.in:hover { transform: none; }
   .glow { display: none; }
 }

@@ -106,6 +106,25 @@
     box.addEventListener('click', function () { box.close(); });
   }
 
+  // YouTube demos: swap the thumbnail link for the player only when clicked (keeps the page light).
+  // Without JS the link simply opens the video on YouTube.
+  document.querySelectorAll('a.yt[data-yt]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var frame = document.createElement('iframe');
+      frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(a.dataset.yt) + '?autoplay=1';
+      frame.title = a.dataset.title;
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      frame.allowFullscreen = true;
+      var box = document.createElement('div');
+      box.className = 'yt';
+      box.appendChild(frame);
+      a.replaceWith(box);
+      frame.focus();
+    });
+  });
+
   // Contact form: opens the visitor's email app with the message filled in
   var form = document.getElementById('contact-form');
   form.addEventListener('submit', function (e) {

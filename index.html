@@ -107,10 +107,8 @@
       <p class="lead reveal">AI agents I have built and measured. The three live agents have public repositories with their scope and evaluation written down; the Job Application Agent runs locally and its code is private.</p>
 
       <!--
-        DEMO VIDEO: to fill a placeholder, replace its <div class="demo-slot">…</div> with e.g.
-        <video class="demo-video" controls preload="none" poster="image/AGENT-poster.jpg">
-          <source src="video/AGENT-demo.mp4" type="video/mp4">
-        </video>
+        DEMO VIDEOS: each <a class="yt" data-yt="VIDEO_ID"> shows the YouTube thumbnail and loads the
+        player only when clicked (main.js). To change a video, replace its ID in href, data-yt and the img src.
       -->
       <div class="stack">
         <article class="card reveal">
@@ -120,7 +118,10 @@
           </div>
           <p>Checks a web page the way a search engine and a visitor would (HTTPS, speed, title and description, headings, alt text, Open Graph, favicon, broken links) and reports prioritised fixes. The checks are plain Python; one Gemini call only writes the summary, from the check results, never from the raw page.</p>
           <ul class="tags" aria-label="Tech"><li>Python</li><li>FastAPI</li><li>Gemini API</li><li>Docker</li><li>Render</li></ul>
-          <div class="demo-slot">Demo video coming soon</div>
+          <a class="yt" href="https://www.youtube.com/watch?v=GXvfwsWxvxk" target="_blank" rel="noopener" data-yt="GXvfwsWxvxk" data-title="Demo video: Website Audit Agent" aria-label="Play demo video: Website Audit Agent">
+            <img src="https://i.ytimg.com/vi/GXvfwsWxvxk/hqdefault.jpg" alt="Demo video: Website Audit Agent" loading="lazy" width="480" height="360">
+            <span class="yt-play" aria-hidden="true"></span>
+          </a>
           <p class="links">
             <a class="btn-sm" href="https://website-audit-agent-hu0d.onrender.com" target="_blank" rel="noopener">Try it live &nearr;</a>
             <a href="https://github.com/Grace-goodluck/website-audit-agent" target="_blank" rel="noopener">Code &nearr;</a>
@@ -134,7 +135,10 @@
           </div>
           <p>Upload a CSV and get a report with data-quality checks, charts and a plain-English summary. A number check rejects any figure not in the data, and files are analysed in memory and never stored.</p>
           <ul class="tags" aria-label="Tech"><li>Python</li><li>pandas</li><li>matplotlib</li><li>Gemini API</li><li>Render</li></ul>
-          <div class="demo-slot">Demo video coming soon</div>
+          <a class="yt" href="https://www.youtube.com/watch?v=tagcNSLc9AM" target="_blank" rel="noopener" data-yt="tagcNSLc9AM" data-title="Demo video: Data Analysis Agent" aria-label="Play demo video: Data Analysis Agent">
+            <img src="https://i.ytimg.com/vi/tagcNSLc9AM/hqdefault.jpg" alt="Demo video: Data Analysis Agent" loading="lazy" width="480" height="360">
+            <span class="yt-play" aria-hidden="true"></span>
+          </a>
           <p class="links">
             <a class="btn-sm" href="https://data-analysis-agent-ynlc.onrender.com" target="_blank" rel="noopener">Try it live &nearr;</a>
             <a href="https://github.com/Grace-goodluck/data-analysis-agent" target="_blank" rel="noopener">Code &nearr;</a>
@@ -148,7 +152,10 @@
           </div>
           <p>Drafts replies to client messages in my voice from my brand files, and shows its sources. It never quotes prices and blocks invented numbers, scoring 10/10 on its evaluation set after fixes (6/10 on the first run).</p>
           <ul class="tags" aria-label="Tech"><li>Python</li><li>FastAPI</li><li>Gemini API</li><li>Render</li></ul>
-          <div class="demo-slot">Demo video coming soon</div>
+          <a class="yt" href="https://www.youtube.com/watch?v=mIBidaL2NzI" target="_blank" rel="noopener" data-yt="mIBidaL2NzI" data-title="Demo video: Client Inquiry Agent" aria-label="Play demo video: Client Inquiry Agent">
+            <img src="https://i.ytimg.com/vi/mIBidaL2NzI/hqdefault.jpg" alt="Demo video: Client Inquiry Agent" loading="lazy" width="480" height="360">
+            <span class="yt-play" aria-hidden="true"></span>
+          </a>
           <p class="links">
             <a class="btn-sm" href="https://client-inquiry-agent.onrender.com" target="_blank" rel="noopener">Try it live &nearr;</a>
             <a href="https://github.com/Grace-goodluck/client-inquiry-agent" target="_blank" rel="noopener">Code &nearr;</a>
@@ -162,7 +169,10 @@
           </div>
           <p>Checks a job description against my real experience, matching each requirement to evidence from my <a href="#second-brain">Second Brain</a> (with sources) and flagging gaps honestly. Its cover letter uses only that evidence, so it never claims anything it cannot back up.</p>
           <ul class="tags" aria-label="Tech"><li>Python</li><li>Gemini API</li><li>Second Brain API</li></ul>
-          <div class="demo-slot">Demo video coming soon</div>
+          <a class="yt" href="https://www.youtube.com/watch?v=UuYv49PiXwE" target="_blank" rel="noopener" data-yt="UuYv49PiXwE" data-title="Demo video: Job Application Agent" aria-label="Play demo video: Job Application Agent">
+            <img src="https://i.ytimg.com/vi/UuYv49PiXwE/hqdefault.jpg" alt="Demo video: Job Application Agent" loading="lazy" width="480" height="360">
+            <span class="yt-play" aria-hidden="true"></span>
+          </a>
           <!-- No code link: the repository is not on GitHub yet. Add one here if it is published. -->
           <p class="links muted">No live demo: it reads my private knowledge base.</p>
         </article>
